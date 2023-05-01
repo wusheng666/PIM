@@ -3,14 +3,16 @@
 ll.registerPlugin(
     /* name */ "PIM",
     /* introduction */ "当玩家进服后进行欢迎",
-    /* version */ [0.3],
+    /* version */ [0.4],
     /* otherInformation */ null
 ); 
-var Versions = 0.3;
+var Versions = 0.4;
 var ordinary = false; //是否显示玩家从那个地区来
 var judgment = true; //是否开启管理员进服提示
+var records = true
 var UpdateTime = 1000 * 60 //更新间隔时间默认一分钟
 var cp = pl.isOP(pl)
+var fi = new File('.\\plugins\\wusheng\\poshi.json','AppendMode')
 function join(pl){
         var name = pl.realName
         var Device = pl.getDevice();
@@ -28,6 +30,8 @@ function join(pl){
     }else{
         JoinTell(datF.IP.split(":")[0], name);
     }
+    var d=new Date();
+    fi.writeLineSync('玩家:'+name+'XUID:'+datF.xuid+'最后一次登录时间:'+d+'IP地址为:'+datF.IP)
 }
     function JoinTell(ip, name) {
         if (ordinary = false) {
@@ -74,8 +78,11 @@ function update() {
             }
         }
     })
-}//自动更新脚本
+};//自动更新脚本
+function load(){
+    setInterval(update, UpdateTime);
+};
 mc.listen("onJoin", join);//监听玩家进服
-updata()
+load()
 
 
