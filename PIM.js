@@ -3,10 +3,10 @@
 ll.registerPlugin(
     /* name */ "PIM",
     /* introduction */ "当玩家进服后进行欢迎",
-    /* version */ [0.4],
+    /* version */ [0.5],
     /* otherInformation */ null
 ); 
-var Versions = 0.4;
+var Versions = 0.5;
 var ordinary = false; //是否显示玩家从那个地区来
 var judgment = true; //是否开启管理员进服提示
 var records = true
@@ -23,8 +23,8 @@ function join(pl){
             "xuid": pl.xuid,
             "PermLevel": pl.permLevel
         };
-        if(judgment = true){
-            if(cp = true){
+        if(judgment == true){
+            if(cp == true){
                 mc.broadcast(`管理员:${name}已加入游戏，请各位玩家文明游戏拒绝作弊`)
             }
     }else{
